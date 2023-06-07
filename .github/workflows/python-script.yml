@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.x  # Replace '3.x' with the desired Python version
+          python-version: 3.7  # Replace '3.x' with the desired Python version
 
       - name: Install dependencies
         run: |
@@ -24,7 +24,4 @@ jobs:
           pip install -r requirements.txt  # If you have any Python dependencies, add them to a 'requirements.txt' file
 
       - name: Run Python script
-        run: python path/to/your/script.py  # Replace 'path/to/your/script.py' with the actual path to your Python script
-
-      - name: Replace JSON file
-        run: mv path/to/new/json/file.json path/to/old/json/file.json  # Replace the paths as per your file structure
+        run: python github_actions.py # Replace 'path/to/your/script.py' with the actual path to your Python script
