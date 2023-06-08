@@ -1,28 +1,20 @@
-name: Run Python Script
-
+name: default
 on:
   push:
     branches:
-      - main  # Replace 'main' with the appropriate branch name
-
+      - main
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Generate data.js and userdata.js
+        run: python github_actions.py
+      - name: Deploy to Github Pages
+        uses: crazy-max/ghaction-github-pages@v3
         with:
-          python-version: 3.7  # Replace '3.x' with the desired Python version
-          
-      - name: Run Python script
-        run: python github_actions.py # Replace 'path/to/your/script.py' with the actual path to your Python script
-
-      - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Update JSON file
-          access_token: ${{ secrets.GITHUB_TOKEN }}
+          target_branch: gh-pages
+          build_dir: src
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
