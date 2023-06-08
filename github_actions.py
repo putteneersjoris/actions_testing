@@ -15,7 +15,7 @@ with open('actions.txt', 'w') as file:
     file.write(generated_text)
 
 # Check if 'actions.txt' exists and print its path if it does, or print "file not found" if it doesn't
-if os.path.exists('actions.txt'):
+if os.path.exists('blabla.txt'):
     file_path = os.path.abspath('actions.txt')
     print("Path of 'actions.txt':", file_path)
 else:
